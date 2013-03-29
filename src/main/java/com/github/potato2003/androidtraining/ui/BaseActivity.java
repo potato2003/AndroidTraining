@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.github.potato2003.androidtraining.MyApplication;
+
 public class BaseActivity extends Activity {
 
 	private static final String TAG = BaseActivity.class.getSimpleName();
@@ -56,7 +58,11 @@ public class BaseActivity extends Activity {
 		Log.d(TAG, "onNewIntent");
 		super.onDestroy();
 	}
-	
+
+	public MyApplication getMyApplication() {
+		return (MyApplication) getApplication();
+	}
+
 	protected Activity getOwnerActivity() {
 		return this;
 	}

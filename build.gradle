@@ -1,0 +1,51 @@
+buildscript {
+	repositories { mavenCentral() }
+	dependencies { classpath 'com.android.tools.build:gradle:0.2' }
+}
+
+apply plugin: 'android'
+
+project.ext {
+	def projectProps = new Properties()
+	file("project.properties").withInputStream { stream ->
+		projectProps.load(stream)
+	}
+	props = new ConfigSlurper().parse(projectProps)
+	//manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
+}
+
+android {
+	packageName = "com.github.potato2003.androidtraining"
+	target = project.props.target
+
+	sourceSets {
+		main {
+			manifest { srcFile 'AndroidManifest.xml' }
+		}
+	}
+
+	defaultConfig {
+	}
+
+	buildTypes {
+		debug { packageNameSuffix = ".debug" }
+		staging { packageNameSuffix = ".staging" }
+		release {
+		}
+	}
+}
+
+sourceCompatibility=1.6
+targetCompatibility=1.6
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+dependencies { compile files("${System.getenv('ANDROID_HOME')}/extras/android/support/v4/android-support-v4.jar") }
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.2'
+	jarFile = 'gradle/gradle-wrapper.jar'
+}
