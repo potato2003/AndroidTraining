@@ -11,7 +11,7 @@ project.ext {
 		projectProps.load(stream)
 	}
 	props = new ConfigSlurper().parse(projectProps)
-	//manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
+	manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
 }
 
 android {
@@ -45,7 +45,7 @@ repositories {
 
 dependencies { compile files("${System.getenv('ANDROID_HOME')}/extras/android/support/v4/android-support-v4.jar") }
 
-task wrapper(type: Wrapper) {
+task generateWrapper(type: Wrapper) {
 	gradleVersion = '1.2'
-	jarFile = 'gradle/gradle-wrapper.jar'
+	jarFile = 'gradle/wrapper/gradle-wrapper.jar'
 }
