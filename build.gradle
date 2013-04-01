@@ -1,6 +1,6 @@
 buildscript {
 	repositories { mavenCentral() }
-	dependencies { classpath 'com.android.tools.build:gradle:0.2' }
+	dependencies { classpath 'com.android.tools.build:gradle:0.3' }
 }
 
 apply plugin: 'android'
@@ -40,9 +40,11 @@ repositories {
 	mavenLocal()
 }
 
-dependencies { compile files("${System.getenv('ANDROID_HOME')}/extras/android/support/v4/android-support-v4.jar") }
+dependencies {
+	compile files("${System.getenv('ANDROID_HOME')}/extras/android/support/v4/android-support-v4.jar")
+}
 
 task generateWrapper(type: Wrapper) {
-	gradleVersion = '1.2'
+	gradleVersion = '1.4'
 	jarFile = 'gradle/wrapper/gradle-wrapper.jar'
 }
