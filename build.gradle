@@ -7,11 +7,11 @@ apply plugin: 'android'
 
 project.ext {
 	def projectProps = new Properties()
-	file("project.properties").withInputStream { stream ->
+	file("src/main/project.properties").withInputStream { stream ->
 		projectProps.load(stream)
 	}
 	props = new ConfigSlurper().parse(projectProps)
-	manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
+	manifest = new XmlSlurper().parse(file("src/main/AndroidManifest.xml"))
 }
 
 android {
@@ -19,9 +19,6 @@ android {
 	target = project.props.target
 
 	sourceSets {
-		main {
-			manifest { srcFile 'AndroidManifest.xml' }
-		}
 	}
 
 	defaultConfig {
